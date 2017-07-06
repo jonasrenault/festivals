@@ -1,4 +1,25 @@
-<app-map [festivals]="festivals"></app-map>
-<md-list>
- <md-list-item *ngFor="let festival of festivals"> {{festival.name}} </md-list-item>
-</md-list>
+<!-- <app-map [festivals]="festivals"></app-map> -->
+
+<md-card>
+  <md-input-container>
+  <input mdInput [mdDatepicker]="myDatepicker">
+  <button mdSuffix [mdDatepickerToggle]="myDatepicker"></button>
+</md-input-container>
+<md-datepicker #myDatepicker></md-datepicker>
+
+  <md-list class="genre-list">
+    <md-list-item *ngFor="let genre of genres">
+      <a (click)="selectGenre(genre)">
+        <h3 md-line>{{genre}}</h3>
+      </a>
+    </md-list-item>
+  </md-list>
+</md-card>
+
+<md-card>
+  <md-list class="festival-list">
+    <md-list-item *ngFor="let festival of filteredFestivals">
+      <h3 md-line>{{festival.name}}</h3>
+    </md-list-item>
+  </md-list>
+</md-card>

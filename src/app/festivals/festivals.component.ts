@@ -10,12 +10,26 @@ import { Festival } from '../festival';
 export class FestivalsComponent implements OnInit {
 
   public festivals: Array<Festival>;
+  public filteredFestivals: Array<Festival>;
+  public genres: Set<String>;
+  private genre: string;
   constructor(private festivalService: FestivalService) { }
 
   ngOnInit() {
     this.festivalService.getFestivals().then(festivals => {
       this.festivals = festivals;
+      this.filteredFestivals = festivals;
+      this.genres = new Set(festivals.map(item => item.genre));
     });
+  }
+
+  selectGenre(genre:string) {
+    this.genre = genre;
+    this.filter();
+  }
+
+  public filter(): void {
+    this.filteredFestivals = this.festivals.filter((elt: Festival) => !this.genre || elt.genre === this.genre);
   }
 
 }
