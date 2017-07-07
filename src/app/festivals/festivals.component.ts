@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DateAdapter } from '@angular/material';
+import { Moment } from 'moment';
 import { FestivalService } from '../festival.service';
 import { Festival } from '../festival';
 
@@ -13,7 +15,8 @@ export class FestivalsComponent implements OnInit {
   public filteredFestivals: Array<Festival>;
   public genres: Set<String>;
   private genre: string;
-  constructor(private festivalService: FestivalService) { }
+  constructor(private festivalService: FestivalService, private dateAdapter: DateAdapter<Moment>) {
+  }
 
   ngOnInit() {
     this.festivalService.getFestivals().then(festivals => {

@@ -2,10 +2,10 @@
 
 <md-card>
   <md-input-container>
-  <input mdInput [mdDatepicker]="myDatepicker">
-  <button mdSuffix [mdDatepickerToggle]="myDatepicker"></button>
-</md-input-container>
-<md-datepicker #myDatepicker></md-datepicker>
+    <input mdInput [mdDatepicker]="picker" placeholder="Choose a date">
+    <button mdSuffix [mdDatepickerToggle]="picker"></button>
+  </md-input-container>
+  <md-datepicker #picker></md-datepicker>
 
   <md-list class="genre-list">
     <md-list-item *ngFor="let genre of genres">

@@ -28,8 +28,11 @@ import {
   MdTabsModule,
   MdToolbarModule,
   MdTooltipModule,
-  OverlayModule
+  OverlayModule,
+  DateAdapter,
+  MD_DATE_FORMATS
 } from '@angular/material';
+import { MomentDateAdapter, MOMENT_DATE_FORMATS } from './moment-date.adapter';
 
 @NgModule({
   exports: [
@@ -65,6 +68,10 @@ import {
 
     // Material (future CDK)
     OverlayModule,
+  ],
+  providers: [
+    {provide: DateAdapter, useClass: MomentDateAdapter},
+    {provide: MD_DATE_FORMATS, useValue: MOMENT_DATE_FORMATS},
   ]
 })
 export class CustomMaterialModule { }
