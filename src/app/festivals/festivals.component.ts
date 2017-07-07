@@ -16,7 +16,7 @@ export class FestivalsComponent implements OnInit {
   public genres: Set<String>;
   public dateFilter: Moment;
   public festival: Festival;
-  private genre: string;
+  private genre: string = null;
   constructor(private festivalService: FestivalService) {
     this.dateFilter = moment();
   }
