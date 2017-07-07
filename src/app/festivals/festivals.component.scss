@@ -5,6 +5,10 @@
   }
 }
 
+:host .filter-container {
+  overflow: auto;
+}
+
 :host .genre-list md-list-item {
   &.music {
     border-left: 4px solid #2780ca;

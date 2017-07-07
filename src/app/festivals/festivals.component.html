@@ -1,46 +1,59 @@
-<div fxLayout="row" fxLayoutAlign="start start"  fxLayout.xs="column">
+<div fxLayout="row" fxLayoutAlign="none"  fxLayout.xs="column">
   <div fxFlex="50">
     <app-map [festivals]="filteredFestivals" (onFestivalSelected)="selectFestival($event)"></app-map>
   </div>
-  <md-card>
-    <md-input-container>
-      <input mdInput [mdDatepicker]="picker" placeholder="Choose a date" [ngModel]="dateFilter" (ngModelChange)="dateChange($event)">
-      <button mdSuffix [mdDatepickerToggle]="picker"></button>
-    </md-input-container>
-    <md-datepicker #picker></md-datepicker>
+  <div fxFlex="50">
 
-    <md-list class="genre-list selectable">
-      <md-list-item [ngClass]="{'active': genre===null}">
-        <h4 md-line (click)="selectGenre(null)">Tous</h4>
-      </md-list-item>
-      <md-list-item *ngFor="let g of genres" class="{{g.c}}" [ngClass]="{'active': genre===g.label}">
-        <h4 md-line (click)="selectGenre(g.label)">{{g.label}}</h4>
-      </md-list-item>
-    </md-list>
-  </md-card>
+    <div fxLayout="column">
+      <div fxLayout="row" fxLayoutAlign="none" fxLayout.xs="column" style="height:400px;">
+        <md-card class="filter-container" fxFlex="50">
+          <md-input-container>
+            <input mdInput [mdDatepicker]="picker" placeholder="Choose a date" [ngModel]="dateFilter" (ngModelChange)="dateChange($event)">
+            <button mdSuffix [mdDatepickerToggle]="picker"></button>
+          </md-input-container>
+          <md-datepicker #picker></md-datepicker>
 
-  <md-card>
-    <md-list class="festival-list selectable">
-      <md-list-item *ngFor="let f of filteredFestivals" [ngClass]="{'active': festival===f}">
-        <h4 md-line (click)="selectFestival(f)">{{f.name}}</h4>
-      </md-list-item>
-    </md-list>
-  </md-card>
+          <md-list class="genre-list selectable">
+            <md-list-item [ngClass]="{'active': genre===null}">
+              <h4 md-line (click)="selectGenre(null)">Tous</h4>
+            </md-list-item>
+            <md-list-item *ngFor="let g of genres" class="{{g.c}}" [ngClass]="{'active': genre===g.label}">
+              <h4 md-line (click)="selectGenre(g.label)">{{g.label}}</h4>
+            </md-list-item>
+          </md-list>
+        </md-card>
+        <md-card class="filter-container festival-list" fxFlex="50">
+          <md-list class="selectable">
+            <md-list-item *ngFor="let f of filteredFestivals" [ngClass]="{'active': festival===f}">
+              <h4 md-line (click)="selectFestival(f)">{{f.name}}</h4>
+            </md-list-item>
+          </md-list>
+        </md-card>
+      </div>
 
-  <md-card class="festival-card" *ngIf="festival">
-    <md-card-header>
-      <!-- <div md-card-avatar class="example-header-image"></div> -->
-      <md-card-title>{{festival.name}}</md-card-title>
-      <md-card-subtitle>{{festival.city}}</md-card-subtitle>
-    </md-card-header>
-    <!-- <img md-card-image src="assets/img/examples/shiba2.jpg"> -->
-    <md-card-content>
-      <p>
-        {{festival.text}}
-      </p>
-      <p class="dates">
-        {{festival.start.format('LL')}} - {{festival.end.format('LL')}}
-      </p>
-    </md-card-content>
-  </md-card>
+      <md-card class="festival-card filter-container" *ngIf="festival">
+        <md-card-header>
+          <!-- <div md-card-avatar class="example-header-image"></div> -->
+          <md-card-title>{{festival.name}}</md-card-title>
+          <md-card-subtitle>{{festival.city}}</md-card-subtitle>
+        </md-card-header>
+        <!-- <img md-card-image src="assets/img/examples/shiba2.jpg"> -->
+        <md-card-content>
+          <p>
+            {{festival.text}}
+          </p>
+          <p class="dates">
+            {{festival.start.format('LL')}} - {{festival.end.format('LL')}}
+          </p>
+        </md-card-content>
+      </md-card>
+    </div>
+
+
+  </div>
+
+
+
+
+
 </div>
