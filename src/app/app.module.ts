@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { CustomMaterialModule } from './custom-material/custom-material.module';
@@ -21,7 +22,9 @@ import { MapComponent } from './map/map.component';
     BrowserModule,
     BrowserAnimationsModule,
     CustomMaterialModule,
-    HttpModule
+    FormsModule,
+    HttpModule,
+    ReactiveFormsModule
   ],
   providers: [
     FestivalService,

@@ -1,3 +1,5 @@
+import { Moment } from 'moment';
+
 export class Festival {
   id: number;
   name: string;
@@ -5,8 +7,8 @@ export class Festival {
   city: string;
   lon: number;
   lat: number;
-  start: Date;
-  end: Date;
+  start: Moment;
+  end: Moment;
   text: string;
   website: string;
   phone: string;

@@ -2,7 +2,7 @@
 
 <md-card>
   <md-input-container>
-    <input mdInput [mdDatepicker]="picker" placeholder="Choose a date">
+    <input mdInput [mdDatepicker]="picker" placeholder="Choose a date" [ngModel]="dateFilter" (ngModelChange)="dateChange($event)">
     <button mdSuffix [mdDatepickerToggle]="picker"></button>
   </md-input-container>
   <md-datepicker #picker></md-datepicker>

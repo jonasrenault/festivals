@@ -24,7 +24,7 @@ export class FestivalService {
         lon: isNaN(points[0]) ? 0 : points[0],
         lat: isNaN(points[1]) ? 0 : points[1],
         start: moment(elt.start, ['DD/MM/YYYY']),
-        endDate: moment(elt.end, ['DD/MM/YYYY']),
+        end: moment(elt.end, ['DD/MM/YYYY']),
         text: elt.text,
         website: (elt.website.indexOf('://') < 0 ? 'http://' : '') + elt.website,
         phone: elt.phone

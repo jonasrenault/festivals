@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DateAdapter } from '@angular/material';
 import { Moment } from 'moment';
+import * as moment from 'moment';
 import { FestivalService } from '../festival.service';
 import { Festival } from '../festival';
 
@@ -14,8 +14,10 @@ export class FestivalsComponent implements OnInit {
   public festivals: Array<Festival>;
   public filteredFestivals: Array<Festival>;
   public genres: Set<String>;
+  public dateFilter: Moment;
   private genre: string;
-  constructor(private festivalService: FestivalService, private dateAdapter: DateAdapter<Moment>) {
+  constructor(private festivalService: FestivalService) {
+    this.dateFilter = moment();
   }
 
   ngOnInit() {
@@ -31,8 +33,23 @@ export class FestivalsComponent implements OnInit {
     this.filter();
   }
 
+  dateChange(newValue: Moment):void {
+    this.dateFilter = newValue;
+    this.filter();
+  }
+
   public filter(): void {
-    this.filteredFestivals = this.festivals.filter((elt: Festival) => !this.genre || elt.genre === this.genre);
+    this.filteredFestivals = this.festivals.filter((elt: Festival) => {
+      return this.isGenre(elt) && this.isOnDate(elt);
+    });
+  }
+
+  private isGenre(elt: Festival): boolean {
+    return !this.genre || elt.genre === this.genre;
+  }
+
+  private isOnDate(elt:Festival): boolean {
+    return !this.dateFilter || (elt.start.isBefore(this.dateFilter) && elt.end.isAfter(this.dateFilter));
   }
 
 }

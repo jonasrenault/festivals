@@ -2,6 +2,8 @@ import { DateAdapter, MdDateFormats } from '@angular/material';
 import { isMoment, Moment } from 'moment';
 import * as moment from 'moment';
 
+// Custom Moment Date Adapter from https://github.com/angular/material2/issues/675
+
 export const MOMENT_DATE_FORMATS: MdDateFormats = {
   parse: {
     dateInput: 'D/M/YYYY'
