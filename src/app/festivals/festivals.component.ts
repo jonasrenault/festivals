@@ -7,7 +7,7 @@ import { Festival } from '../festival';
 @Component({
   selector: 'app-festivals',
   templateUrl: './festivals.component.html',
-  styleUrls: ['./festivals.component.css']
+  styleUrls: ['./festivals.component.scss']
 })
 export class FestivalsComponent implements OnInit {
 
@@ -15,6 +15,7 @@ export class FestivalsComponent implements OnInit {
   public filteredFestivals: Array<Festival>;
   public genres: Set<String>;
   public dateFilter: Moment;
+  public festival: Festival;
   private genre: string;
   constructor(private festivalService: FestivalService) {
     this.dateFilter = moment();
@@ -23,14 +24,18 @@ export class FestivalsComponent implements OnInit {
   ngOnInit() {
     this.festivalService.getFestivals().then(festivals => {
       this.festivals = festivals;
-      this.filteredFestivals = festivals;
       this.genres = new Set(festivals.map(item => item.genre));
+      this.filter();
     });
   }
 
   selectGenre(genre:string) {
     this.genre = genre;
     this.filter();
+  }
+
+  selectFestival(festival:Festival): void {
+    this.festival = festival;
   }
 
   dateChange(newValue: Moment):void {

@@ -1,0 +1,12 @@
+:host md-list-item {
+  transition: border-width 0.1s ease-in-out;
+  &.active {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+}
+
+:host md-list.selectable {
+  md-list-item {
+    cursor: pointer;
+  }
+}
