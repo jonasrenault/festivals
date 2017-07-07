@@ -5,6 +5,33 @@
   }
 }
 
+:host .genre-list md-list-item {
+  &.music {
+    border-left: 4px solid #2780ca;
+  }
+  &.danse {
+    border-left: 4px solid #7a7a7a;
+  }
+  &.litt {
+    border-left: 4px solid #cb852b;
+  }
+  &.theater {
+    border-left: 4px solid #ca2438;
+  }
+  &.cinema {
+    border-left: 4px solid #9a26ca;
+  }
+  &.photo {
+    border-left: 4px solid #cac427;
+  }
+  &.bd {
+    border-left: 4px solid #3d3d3d;
+  }
+  &.other {
+    border-left: 4px solid #24ac21;
+  }
+}
+
 :host md-list.selectable {
   md-list-item {
     cursor: pointer;

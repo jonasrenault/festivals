@@ -13,7 +13,16 @@ export class FestivalsComponent implements OnInit {
 
   public festivals: Array<Festival>;
   public filteredFestivals: Array<Festival>;
-  public genres: Set<String>;
+  public genres = [
+    {label: 'Musique', c: 'music'},
+    {label: 'Danse', c: 'danse'},
+    {label: 'Littérature', c: 'litt'},
+    {label: 'Théâtre / Arts de la rue / Cirque', c: 'theater'},
+    {label: 'Cinéma', c: 'cinema'},
+    {label: 'Photo / Art contemporain', c: 'photo'},
+    {label: 'BD', c: 'bd'},
+    {label: 'Autres', c: 'other'}
+  ];
   public dateFilter: Moment;
   public festival: Festival;
   private genre: string = null;
@@ -24,7 +33,6 @@ export class FestivalsComponent implements OnInit {
   ngOnInit() {
     this.festivalService.getFestivals().then(festivals => {
       this.festivals = festivals;
-      this.genres = new Set(festivals.map(item => item.genre));
       this.filter();
     });
   }

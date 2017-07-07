@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnChanges, Input, EventEmitter, Output } from '@angular/core';
 import { MapService } from '../map.service';
 import { Festival } from '../festival';
 
@@ -10,6 +10,7 @@ import { Festival } from '../festival';
 export class MapComponent implements OnInit, AfterViewInit, OnChanges {
 
   @Input() festivals: Array<Festival>;
+  @Output() onFestivalSelected = new EventEmitter<Festival>();
   @ViewChild('container') element: ElementRef;
   private htmlElement: HTMLElement;
   constructor(private mapService: MapService) { }
@@ -19,7 +20,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
 
   ngAfterViewInit() {
     this.htmlElement = this.element.nativeElement;
-    this.mapService.setup(this.htmlElement);
+    this.mapService.setup(this.htmlElement, (id: number) => this.festivalCallback(id));
   }
 
   /**
@@ -27,6 +28,14 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
   **/
   ngOnChanges(): void {
     this.mapService.showFestivals(this.festivals);
+  }
+
+  festivalCallback(festivalId: number): void {
+    const festival = this.festivals.filter(elt => elt.id === festivalId);
+    if (festival.length > 0) {
+      this.onFestivalSelected.emit(festival[0]);
+    }
+    console.log(festivalId);
   }
 
 }

@@ -49,6 +49,8 @@ export class MapService {
     'Photo / Art contemporain': L.layerGroup(),
     'BD': L.layerGroup()
   };
+  private markerCallback: (festivalId: number) => void;
+  private selectedFestivalId: number;
   constructor() {
     this.config = {
       center: [46.6, 2.1],
@@ -59,8 +61,9 @@ export class MapService {
     };
   }
 
-  public setup(htmlElement: HTMLElement): void {
+  public setup(htmlElement: HTMLElement, callback: (festivalId: number) => void): void {
     this.htmlElement = htmlElement;
+    this.markerCallback = callback;
     this.buildMap();
   }
 
@@ -98,7 +101,20 @@ export class MapService {
   }
 
   private createFestivalMarker(festival: Festival): L.Marker {
-    return L.marker([festival.lat, festival.lon], {icon: switcher[festival.genre]})
+    const marker = L.marker([festival.lat, festival.lon], {icon: switcher[festival.genre], festivalId: festival.id});
+    marker.bindPopup(`<strong>${festival.name}</strong><br>${festival.city}.`);
+    marker.on('click', (data) => this.onMarkerClick(data));
+    return marker;
+  }
+
+  private onMarkerClick(data): void {
+    if (data && data.target && data.target.options) {
+      const festivalId = data.target.options.festivalId;
+      if (festivalId !== this.selectedFestivalId) {
+        this.selectedFestivalId = festivalId;
+        this.markerCallback(festivalId);
+      }
+    }
   }
 
 }

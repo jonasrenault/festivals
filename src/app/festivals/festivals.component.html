@@ -1,6 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="start start"  fxLayout.xs="column">
   <div fxFlex="50">
-    <app-map [festivals]="filteredFestivals"></app-map>
+    <app-map [festivals]="filteredFestivals" (onFestivalSelected)="selectFestival($event)"></app-map>
   </div>
   <md-card>
     <md-input-container>
@@ -13,8 +13,8 @@
       <md-list-item [ngClass]="{'active': genre===null}">
         <h4 md-line (click)="selectGenre(null)">Tous</h4>
       </md-list-item>
-      <md-list-item *ngFor="let g of genres" [ngClass]="{'active': genre===g}">
-        <h4 md-line (click)="selectGenre(g)">{{g}}</h4>
+      <md-list-item *ngFor="let g of genres" class="{{g.c}}" [ngClass]="{'active': genre===g.label}">
+        <h4 md-line (click)="selectGenre(g.label)">{{g.label}}</h4>
       </md-list-item>
     </md-list>
   </md-card>
