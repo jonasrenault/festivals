@@ -25,7 +25,7 @@ export class FestivalsComponent implements OnInit {
   ];
   public dateFilter: Moment;
   public festival: Festival;
-  private genre: string = null;
+  public genre: string = null;
   constructor(private festivalService: FestivalService) {
     let now = moment();
     if (moment('2017-08-28').isBefore(now)) {
