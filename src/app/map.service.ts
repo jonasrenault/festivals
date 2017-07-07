@@ -102,7 +102,7 @@ export class MapService {
 
   private createFestivalMarker(festival: Festival): L.Marker {
     const marker = L.marker([festival.lat, festival.lon], {icon: switcher[festival.genre], festivalId: festival.id});
-    marker.bindPopup(`<strong>${festival.name}</strong><br>${festival.city}.`);
+    marker.bindPopup(`<strong>${festival.name}</strong><br>${festival.city}`);
     marker.on('click', (data) => this.onMarkerClick(data));
     return marker;
   }

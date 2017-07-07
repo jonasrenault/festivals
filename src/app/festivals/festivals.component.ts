@@ -27,7 +27,11 @@ export class FestivalsComponent implements OnInit {
   public festival: Festival;
   private genre: string = null;
   constructor(private festivalService: FestivalService) {
-    this.dateFilter = moment();
+    let now = moment();
+    if (moment('2017-08-28').isBefore(now)) {
+      now = moment('2017-08-01');
+    }
+    this.dateFilter = now;
   }
 
   ngOnInit() {

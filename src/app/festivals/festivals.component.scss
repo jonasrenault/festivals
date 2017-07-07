@@ -9,6 +9,21 @@
   overflow: auto;
 }
 
+:host .festival-card {
+  md-card-content {
+    margin: 0 8px;
+  }
+
+  md-card-title {
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .dates {
+    color: rgba(0,0,0,.54);
+  }
+}
+
 :host .genre-list md-list-item {
   &.music {
     border-left: 4px solid #2780ca;
